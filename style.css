@@ -1,0 +1,372 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Roboto Mono", monospace; */
+  font-family: "Space Grotesk", sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  position: relative;
+}
+
+#main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #232323;
+  opacity: 0.3;
+}
+
+#box {
+  position: relative;
+  width: 70vw;
+  height: 500px;
+  border: solid 3px #fff;
+  background: url(images/background.jpg) no-repeat center center;
+  background-size: cover;
+  text-align: center;
+}
+#swipe-hint {
+  display: none;
+  text-shadow: none;
+}
+#game-name {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  font-size: 3vw;
+  text-align: center;
+  color: #fff;
+
+  text-transform: uppercase;
+  font-weight: 500;
+  text-shadow: 0px 0px 7px #fff, 0px 0px 15px #fc35b5;
+}
+#owner {
+  font-size: 1.2vw;
+  font-weight: 900;
+  padding-bottom: 0vw;
+  text-transform: uppercase;
+  color: #232323;
+  text-shadow: 0px 0px 5px #fff, 0px 0px 10px #fc35b5;
+}
+#score-section {
+  display: flex;
+  color: #fff;
+  justify-content: end;
+  align-items: center;
+  gap: 0.3vw;
+  font-size: 1.5vw;
+  padding: 2vw 3vw;
+}
+#paddle {
+  position: absolute;
+  width: 70px;
+  height: 15px;
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(250, 250, 250) 0%,
+    rgb(225, 234, 238) 90%
+  );
+  bottom: 2px;
+  box-shadow: 0px 0px 6px #fff;
+}
+
+#ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to top,
+    #20dcaa,
+    #2be0af,
+    #34e5b5,
+    #3ce9ba,
+    #43eec0,
+    #41eabc,
+    #40e5b9,
+    #3ee1b5,
+    #33d2a7,
+    #27c499,
+    #1ab68b,
+    #06a87e
+  );
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#score {
+  width: 5px;
+  text-align: end;
+}
+
+/* popup styles */
+#popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  display: none;
+}
+
+#popup-container {
+  width: 30vw;
+  height: 70vh;
+  background: url(images/gameover-background.jpg) no-repeat center center;
+  background-size: cover;
+  box-shadow: 0px 0px 10px rgb(58, 56, 56);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+}
+
+#gameover-animation {
+  text-align: center;
+  font-size: 4vw;
+  color: #121212;
+  animation: flicker 2.5s infinite;
+  /* padding-bottom: 2vw; */
+}
+
+#score-display {
+  display: flex;
+  gap: 0.5vw;
+  font-size: 2.5vw;
+  /* padding-bottom: 2vw; */
+  font-weight: 500;
+  text-shadow: 0px 0px 1.2px #121212;
+}
+
+#replay,
+#quit {
+  width: 13vw;
+  height: 5vw;
+  font-size: 2vw;
+  padding: 1vw 3vw;
+  outline: none;
+  box-shadow: 0px 0px 10px #121212;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+#replay:hover,
+#quit:hover {
+  transform: translateY(5px);
+
+  transition: all 0.1s ease;
+}
+
+@keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #fc35b5,
+      0 0 80px #fc35b5, 0 0 90px #fc35b5, 0 0 100px #fc35b5, 0 0 150px #fc35b5;
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+}
+
+/* Start Popup */
+
+#start-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  display: block;
+}
+
+#start-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  height: 70vh;
+  background: url(images/gameover-background.jpg) no-repeat center center;
+  background-size: cover;
+  box-shadow: 0px 0px 10px rgb(58, 56, 56);
+  gap: 0.1vw;
+}
+
+#welcome {
+  font-size: 1.2vw;
+  font-weight: 400;
+  padding-bottom: 0.5vw;
+  text-transform: uppercase;
+}
+
+#game-title {
+  font-size: 2vw;
+  line-height: 1.5vw;
+  padding-bottom: 2vw;
+  animation: flicker 2s infinite;
+  color: #121212;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#change-theme {
+  font-size: 1.6vw;
+  padding-bottom: 2vw;
+  font-weight: 500;
+}
+#theme-btn {
+  color: #fff;
+  background: #232323;
+}
+
+#theme-btn,
+#play-game-btn,
+#level {
+  width: 10vw;
+  height: 4vw;
+  font-size: 1.3vw;
+  outline: none;
+  box-shadow: 0px 0px 10px #121212;
+  font-weight: 500;
+  border-radius: 10px;
+  margin-bottom: 1vw;
+}
+
+#theme-btn:hover,
+#play-game-btn:hover,
+#level:hover {
+  transform: translateY(5px);
+
+  transition: all 0.1s ease;
+}
+
+/* Media Queries */
+@media screen and (max-width: 500px) {
+  /* Start Popup */
+
+  #start-container {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #welcome {
+    /* margin-top: 6vw; */
+    font-size: 5vw;
+    padding-bottom: 5vw;
+  }
+
+  #game-title {
+    font-size: 8.2vw;
+    padding-bottom: 11vw;
+    font-weight: 800;
+  }
+
+  #change-theme {
+    font-size: 7vw;
+    padding-bottom: 5vw;
+  }
+
+  #theme-btn,
+  #play-game-btn,
+  #level {
+    width: 35vw;
+    height: 15vw;
+    font-size: 5vw;
+    margin-bottom: 7vw;
+  }
+
+  #theme-btn:hover,
+  #play-game-btn:hover,
+  #level:hover {
+    transform: translateY(2px);
+  }
+
+  /* popup styles */
+
+  #popup-container {
+    width: 100vw;
+    height: 100vh;
+    gap: 15vw;
+    padding: 0vw 10vw;
+  }
+
+  #gameover-animation {
+    font-size: 20vw;
+  }
+
+  #score-display {
+    font-size: 8vw;
+  }
+
+  #replay,
+  #quit {
+    width: 38vw;
+    height: 18vw;
+    font-size: 8vw;
+  }
+
+  #replay:hover,
+  #quit:hover {
+    transform: translateY(2px);
+  }
+
+  /* main styles */
+  #main {
+    justify-content: start;
+    opacity: 1;
+  }
+  #box {
+    margin-top: 5vh;
+    width: 95vw;
+  }
+  #swipe-hint {
+    display: block;
+    color: #fff;
+    margin-top: 7vh;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px #fc35b5;
+  }
+  #game-name {
+    font-size: 12vw;
+  }
+  #owner {
+    font-size: 5vw;
+  }
+  #score-section {
+    font-size: 3.5vw;
+    padding: 4vw 8vw;
+  }
+  #paddle {
+    width: 17vw;
+  }
+
+  #ball {
+    width: 5vw;
+    height: 5vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
