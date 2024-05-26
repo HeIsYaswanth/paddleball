@@ -25,10 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function changeLevel() {
     if (levelBtn.innerHTML === "Easy") {
       levelBtn.innerHTML = "Medium";
-      dX = dY = 4;
+      dX = dY = 3;
     } else if (levelBtn.innerHTML === "Medium") {
       levelBtn.innerHTML = "Hard";
-      dX = dY = 6;
+      dX = dY = 4;
     } else if (levelBtn.innerHTML === "Hard") {
       levelBtn.innerHTML = "Easy";
       dX = dY = 2;
